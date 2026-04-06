@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Н.И. Татарников | Архитектор математического мышления</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #111827;
+      --bg-glass: rgba(30, 41, 59, 0.7);
+      --neon-blue: #00f3ff;
+      --neon-purple: #bc13fe;
+      --neon-pink: #ff00aa;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-success: #22d3ee;
+      --accent-warning: #fbbf24;
+      --grid-color: rgba(0, 243, 255, 0.08);
+      --glow-blue: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 25px rgba(0, 243, 255, 0.3);
+      --glow-purple: 0 0 10px rgba(188, 19, 254, 0.5), 0 0 25px rgba(188, 19, 254, 0.3);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --border-radius: 16px;
+      --container-width: 1200px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; font-weight: 700; line-height: 1.2; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 1rem; position: relative; display: inline-block; }
+    h2::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60%; height: 3px; background: linear-gradient(90deg, var(--neon-blue), transparent); border-radius: 2px; }
+    h3 { font-size: 1.3rem; }
+    p { color: var(--text-secondary); margin-bottom: 1rem; font-size: 1.05rem; }
+    .highlight { color: var(--neon-blue); font-weight: 600; }
+    .highlight-purple { color: var(--neon-purple); font-weight: 600; }
+
+    /* ===== UTILITIES ===== */
+    .container { max-width: var(--container-width); margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 6rem 0; position: relative; }
+    .text-center { text-align: center; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mb-4 { margin-bottom: 4rem; }
+
+    /* ===== GLASSMORPHISM ===== */
+    .glass {
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+    .glass:hover {
+      border-color: var(--neon-blue);
+      box-shadow: var(--glow-blue);
+      transform: translateY(-4px);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--bg-primary);
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.5s;
+    }
+    .btn:hover::before { left: 100%; }
+    .btn:hover { transform: scale(1.05); box-shadow: var(--glow-blue), var(--glow-purple); }
+    .btn-outline { background: transparent; border: 2px solid var(--neon-blue); color: var(--neon-blue); }
+    .btn-outline:hover { background: var(--neon-blue); color: var(--bg-primary); }
+    .btn-sm { padding: 0.7rem 1.5rem; font-size: 0.8rem; }
+
+    /* ===== GLITCH EFFECT ===== */
+    .glitch { position: relative; animation: glitch 2s infinite; }
+    @keyframes glitch {
+      0%, 90%, 100% { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue); }
+      92% { text-shadow: 2px 0 var(--neon-pink), -2px -2px var(--neon-purple); }
+      94% { text-shadow: -2px 0 var(--neon-purple), 2px 2px var(--neon-pink); }
+      96% { text-shadow: 2px -2px var(--neon-blue), -2px 2px var(--neon-purple); }
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 0.8rem 0;
+      background: rgba(10, 14, 23, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .logo span { color: var(--neon-blue); }
+    .school-badge {
+      font-size: 0.6rem;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+      padding: 2px 8px;
+      border-radius: 50px;
+      color: white;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.5px;
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      position: relative;
+    }
+    nav a:hover { color: var(--neon-blue); }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--neon-blue);
+      transition: var(--transition);
+    }
+    nav a:hover::after { width: 100%; }
+    .header-cta { margin-left: 1.5rem; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,243,255,0.15) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      animation: pulse 8s ease-in-out infinite;
+      z-index: 1;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(188,19,254,0.1) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      animation: pulse 10s ease-in-out infinite reverse;
+      z-index: 1;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+    .hero-content { max-width: 700px; z-index: 2; position: relative; }
+    .hero-subtitle { font-size: 1.2rem; margin: 1.5rem 0 2rem; color: var(--text-secondary); }
+    .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats { display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-number { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--neon-blue); display: block; }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* ===== SCHOOL #4 BANNER ===== */
+    .school4-banner {
+      background: linear-gradient(135deg, rgba(188,19,254,0.2), rgba(0,243,255,0.1));
+      border: 1px solid var(--neon-purple);
+      border-radius: var(--border-radius);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .school4-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(188,19,254,0.15), transparent 70%);
+      border-radius: 50%;
+    }
+    .school4-trophy {
+      font-size: 3rem;
+      min-width: 60px;
+      text-align: center;
+    }
+    .school4-text h3 {
+      color: var(--neon-blue);
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+    }
+    .school4-text p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    .school4-text .humor {
+      color: var(--neon-purple);
+      font-style: italic;
+      font-size: 0.85rem;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    
+    .about-photo {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+      border: 2px solid var(--neon-blue);
+    }
+    
+    .photo-frame {
+      width: 100%;
+      position: relative;
+    }
+    .photo-frame img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .photo-gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(0,243,255,0.3);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-height: 600px; /* Ограничение по высоте */
+    }
+    .photo-gallery-item img {
+    width: 100%;
+      height: 100%;
+      object-fit: contain; /* Фото целиком без обрезки */
+      transition: var(--transition);
+      display: block;
+    }
+    .photo-gallery-item:hover img {
+      transform: scale(1.02);
+    }
+
+    .about-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .badge {
+      padding: 0.4rem 0.8rem;
+      background: rgba(0, 243, 255, 0.15);
+      border: 1px solid var(--neon-blue);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--neon-blue);
+    }
+    .badge-purple {
+      background: rgba(188, 19, 254, 0.15);
+      border-color: var(--neon-purple);
+      color: var(--neon-purple);
+    }
+
+    /* ===== BEFORE/AFTER ===== */
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .ba-card {
+      padding: 2rem;
+      text-align: center;
+    }
+    .ba-card.before { border-color: rgba(255,0,100,0.3); }
+    .ba-card.after { border-color: rgba(0,243,255,0.3); }
+    .ba-emoji { font-size: 3rem; margin-bottom: 1rem; }
+    .ba-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .ba-card.before .ba-title { color: #ff5f56; }
+    .ba-card.after .ba-title { color: var(--accent-success); }
+    .ba-list { list-style: none; text-align: left; }
+    .ba-list li {
+      padding: 0.4rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ba-arrow {
+      font-size: 3rem;
+      color: var(--neon-blue);
+      animation: arrow-pulse 2s infinite;
+    }
+    @keyframes arrow-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* ===== FOR WHOM ===== */
+    .whom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .whom-card {
+      padding: 2rem;
+      border-radius: var(--border-radius);
+    }
+    .whom-card.yes { border: 2px solid rgba(0,243,255,0.3); }
+    .whom-card.no { border: 2px solid rgba(255,0,100,0.3); opacity: 0.8; }
+    .whom-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .whom-card.yes .whom-title { color: var(--neon-blue); }
+    .whom-card.no .whom-title { color: #ff5f56; }
+    .whom-list { list-style: none; }
+    .whom-list li {
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    /* ===== CALCULATOR ===== */
+    .calculator-card {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem;
+    }
+    .slider-container { margin: 2rem 0; }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--bg-secondary);
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--neon-blue);
+      cursor: pointer;
+      border: 3px solid var(--bg-primary);
+      box-shadow: var(--glow-blue);
+      transition: var(--transition);
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 20px var(--neon-blue); }
+    .result-display {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-left: 4px solid var(--neon-purple);
+    }
+    .result-profession {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      color: var(--neon-blue);
+      margin-bottom: 0.5rem;
+    }
+    .result-result {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--neon-blue), var(--accent-success));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .result-desc { margin-top: 1rem; font-size: 0.95rem; }
+
+    /* ===== METHODOLOGY ===== */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .method-card {
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .method-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--neon-blue), var(--neon-purple));
+    }
+    .method-step {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(0, 243, 255, 0.15);
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      line-height: 1;
+    }
+    .method-title {
+      font-size: 1.3rem;
+      margin: 1rem 0 0.5rem;
+      color: var(--neon-blue);
+    }
+    .method-humor {
+      font-style: italic;
+      color: var(--neon-purple);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== TELEMETRY ===== */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .telemetry-item {
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .telemetry-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--neon-blue);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .telemetry-label { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* ===== UNIVERSITIES ===== */
+    .universities-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .uni-badge {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .uni-badge:hover {
+      border-color: var(--neon-blue);
+      color: var(--neon-blue);
+      background: rgba(0,243,255,0.1);
+    }
+    .uni-badge .uni-icon { font-size: 1.3rem; }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-slider {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1rem 0;
+      scrollbar-width: none;
+    }
+    .testimonials-slider::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+      min-width: 350px;
+      max-width: 350px;
+      scroll-snap-align: start;
+      padding: 2rem;
+    }
+    .testimonial-stars { color: var(--accent-warning); margin-bottom: 1rem; font-size: 1.2rem; }
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--bg-primary);
+    }
+    .testimonial-name { font-weight: 600; font-size: 0.95rem; }
+    .testimonial-role { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* ===== DIRECTOR TESTIMONIAL ===== */
+    .director-testimonial {
+      background: linear-gradient(135deg, rgba(188,19,254,0.15), rgba(0,243,255,0.1));
+      border: 2px solid var(--neon-purple);
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      margin: 3rem auto;
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(188,19,254,0.2);
+    }
+    .director-testimonial::before {
+      content: '🏆';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 8rem;
+      opacity: 0.1;
+      transform: rotate(15deg);
+    }
+    .director-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+      color: white;
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+    .director-quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--neon-purple);
+    }
+    .director-quote::before {
+      content: '"';
+      font-size: 4rem;
+      color: var(--neon-purple);
+      opacity: 0.3;
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-family: Georgia, serif;
+    }
+    .director-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .director-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--neon-purple);
+      flex-shrink: 0;
+    }
+    .director-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .director-avatar-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .director-details h4 {
+      color: var(--neon-blue);
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .director-details p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-list {
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      background: var(--bg-glass);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .faq-question:hover {
+      border-color: var(--neon-blue);
+      background: rgba(0,243,255,0.05);
+    }
+    .faq-icon {
+      font-size: 1.5rem;
+      color: var(--neon-blue);
+      transition: var(--transition);
+    }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: rgba(17, 24, 39, 0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 1.2rem 1.5rem;
+    }
+    .faq-answer p { margin: 0; font-size: 0.95rem; }
+
+    /* ===== COUNTDOWN ===== */
+    .countdown-banner {
+      background: linear-gradient(135deg, rgba(255,0,170,0.15), rgba(188,19,254,0.15));
+      border: 1px solid var(--neon-pink);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .countdown-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--neon-pink);
+      margin-bottom: 1rem;
+    }
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .countdown-unit {
+      text-align: center;
+    }
+    .countdown-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--neon-blue);
+      display: block;
+    }
+    .countdown-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .pricing-card {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--neon-purple);
+      transform: scale(1.05);
+    }
+    .pricing-card.featured::before {
+      content: '🔥 ХИТ';
+      position: absolute;
+      top: -12px; right: 20px;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+      color: white;
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .pricing-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--neon-blue);
+    }
+    .pricing-price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+      color: var(--text-primary);
+    }
+    .pricing-price span { font-size: 0.9rem; color: var(--text-secondary); font-weight: 400; }
+    .pricing-hourly {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--accent-success);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .pricing-features {
+      list-style: none;
+      margin: 1rem 0;
+      flex-grow: 1;
+    }
+    .pricing-features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--accent-success); font-weight: bold; }
+    .pricing-card .btn { width: 100%; justify-content: center; margin-top: auto; }
+
+    /* ===== GUARANTEE ===== */
+    .guarantee-box {
+      background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(0,243,255,0.05));
+      border: 2px solid var(--accent-success);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .guarantee-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .guarantee-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      color: var(--accent-success);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--bg-secondary);
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(0, 243, 255, 0.2);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .footer-brand .logo { margin-bottom: 1rem; display: inline-flex; }
+    .footer-links a {
+      display: block;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.4rem 0;
+      transition: var(--transition);
+      font-size: 0.95rem;
+    }
+    .footer-links a:hover { color: var(--neon-blue); padding-left: 4px; }
+    .hack-btn {
+      background: transparent;
+      border: 1px dashed var(--neon-purple);
+      color: var(--neon-purple);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+    .hack-btn:hover { background: rgba(188, 19, 254, 0.1); box-shadow: var(--glow-purple); }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ===== MODAL CONSOLE ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    .console-modal {
+      background: #0d1117;
+      border: 2px solid var(--neon-blue);
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: var(--glow-blue);
+      font-family: 'Courier New', monospace;
+    }
+    .console-header {
+      background: #161b22;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(0, 243, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .console-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .console-dot.red { background: #ff5f56; }
+    .console-dot.yellow { background: #ffbd2e; }
+    .console-dot.green { background: #27ca40; }
+    .console-title { margin-left: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .console-body { padding: 1.5rem; max-height: 400px; overflow-y: auto; }
+    .console-line { margin-bottom: 1rem; line-height: 1.5; }
+    .console-prompt { color: var(--neon-blue); margin-right: 0.5rem; }
+    .console-input {
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      outline: none;
+      width: 200px;
+      border-bottom: 2px dashed var(--neon-purple);
+      padding: 0.25rem 0;
+    }
+    .console-input:focus { border-bottom-style: solid; }
+    .console-success { color: var(--accent-success); font-weight: bold; }
+    .promo-code {
+      background: rgba(34, 211, 238, 0.15);
+      border: 1px solid var(--accent-success);
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--accent-success);
+    }
+    .close-console {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none; border: none;
+      color: var(--text-secondary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .close-console:hover { color: var(--neon-blue); }
+
+    /* ===== CONFETTI ===== */
+    .confetti {
+      position: fixed;
+      width: 10px; height: 10px;
+      animation: confetti-fall 3s ease-in-out forwards;
+      pointer-events: none;
+      z-index: 2001;
+      border-radius: 2px;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===== FLOATING VK BUTTON ===== */
+    .floating-vk {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--bg-primary);
+      text-decoration: none;
+      box-shadow: var(--glow-blue);
+      transition: var(--transition);
+      animation: float-bounce 3s ease-in-out infinite;
+    }
+    .floating-vk:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-purple);
+    }
+    @keyframes float-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { order: -1; max-width: 400px; margin: 0 auto; }
+      .hero-cta-group { flex-direction: column; align-items: flex-start; }
+      nav { display: none; }
+      .pricing-card.featured { transform: scale(1); }
+      .before-after-grid { grid-template-columns: 1fr; }
+      .ba-arrow { transform: rotate(90deg); text-align: center; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .testimonial-card { min-width: 300px; max-width: 300px; }
+      .school4-banner { flex-direction: column; text-align: center; }
+      .director-testimonial { padding: 2rem 1.5rem; }
+      .director-quote { font-size: 1rem; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 4rem 0; }
+      h1 { font-size: 2rem; }
+      .hero-stats { gap: 1rem; }
+      .stat-number { font-size: 1.3rem; }
+      .countdown-timer { gap: 0.75rem; }
+      .countdown-number { font-size: 1.8rem; }
+      .photo-gallery { grid-template-columns: 1fr; }
+	  .photo-gallery-item {max-height: 500px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== FLOATING VK BUTTON ===== -->
+  <a href="https://vk.com/id211211321" target="_blank" class="floating-vk" title="Написать в VK">
+    💬
+  </a>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        Н.И. <span>Татарников</span>
+        <span class="school-badge">ШКОЛА №4</span>
+      </a>
+      <nav>
+        <a href="#about">Об учителе</a>
+        <a href="#results">Результаты</a>
+        <a href="#calculator">Калькулятор</a>
+        <a href="#method">Методика</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="https://vk.com/id211211321" target="_blank" class="btn header-cta btn-sm">Написать в VK</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <img src="img1.png" alt="Math background" class="hero-bg" onerror="this.style.display='none'">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div style="display:inline-block;background:rgba(188,19,254,0.15);border:1px solid var(--neon-purple);border-radius:50px;padding:0.3rem 1rem;font-size:0.8rem;margin-bottom:1rem;color:var(--neon-purple);">
+          🏆 Лучший учитель математики по версии школы №4 (версия 2026, обновление от администрации)
+        </div>
+        <h1>Математика — это исходный код твоего успеха</h1>
+        <p class="hero-subtitle">
+          Декодирую любые сложности. Нахожу подход там, где другие выдают 
+          <code style="background:rgba(255,0,170,0.2);padding:2px 6px;border-radius:4px;">Error 404: Understanding not found</code>. 
+          Подготовка к ЕГЭ, ОГЭ и экзаменам с абсолютного нуля.
+        </p>
+        <div class="hero-cta-group">
+          <a href="https://vk.com/id211211321" target="_blank" class="btn glitch">
+            🚀 Запустить диагностику
+          </a>
+          <a href="#calculator" class="btn btn-outline">
+            📊 Оценить потенциал
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="stat1">34</span>
+            <span class="stat-label">Учеников в топе</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat2">92</span>
+            <span class="stat-label">Средний балл ЕГЭ</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="stat3">6</span>
+            <span class="stat-label">Лет опыта</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SCHOOL #4 BANNER ===== -->
+  <section class="section" style="padding-top:2rem;padding-bottom:2rem;">
+    <div class="container">
+      <div class="school4-banner glass fade-in">
+        <div class="school4-trophy">🏆</div>
+        <div class="school4-text">
+          <h3>«Лучший учитель математики» — по версии школы №4</h3>
+          <p>Официально. С печатью. Без подтасовок. Жюри из трёх директоров и одного вахтёра подтвердило единогласно.</p>
+          <p class="humor">Вахтёр особенно впечатлился объяснением квадратных уравнений. «Наконец-то я понял, зачем они нужны», — цитата из протокола.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo glass fade-in">
+          <div class="photo-frame">
+            <img src="kol1.jpg" alt="Н.И. Татарников — учитель математики" onerror="this.src='img2.png';this.onerror=null;">
+          </div>
+        </div>
+        
+        <div class="fade-in">
+          <h2>Архитектор <span class="highlight">математического мышления</span></h2>
+          <p>
+            <strong>Татарников Николай Иванович</strong> — педагог-математик, который видит в каждом ученике не «не способного», а <span class="highlight">нераскрытый потенциал</span>.
+          </p>
+          <p>
+            Моя миссия: найти алгоритм понимания там, где другие преподаватели выдают «не дано». 
+            Я не учу «решать по шаблону». Я формирую <strong>математическую интуицию</strong> — способность видеть структуру задачи, строить логические цепочки и находить неочевидные решения.
+          </p>
+          <p style="font-style:italic;color:var(--neon-purple);font-size:0.95rem;">
+            «Математика — это не набор формул. Это язык, на котором говорит логика мироздания. 
+            Я помогаю ученикам заговорить на нём свободно. И нет, зубрёжка тут не при делах — у меня аллергия на механическое запоминание.»
+          </p>
+          <div class="about-badges">
+            <span class="badge">✓ С нуля до 80+ на ЕГЭ</span>
+            <span class="badge">✓ Олимпиадная подготовка</span>
+            <span class="badge badge-purple">🏆 Лучший учитель школы №4</span>
+            <span class="badge">✓ 12 лет практики</span>
+            <span class="badge">✓ Гарантия результата</span>
+            <span class="badge">✓ Первое занятие — бесплатно</span>
+          </div>
+          <a href="https://vk.com/id211211321" target="_blank" class="btn" style="margin-top:1.5rem;">
+            💬 Обсудить ваш случай в VK
+          </a>
+        </div>
+      </div>
+
+      <!-- Photo gallery - без подписей -->
+
+    </div>
+  </section>
+
+  <!-- ===== BEFORE / AFTER ===== -->
+  <section id="results" class="section" style="background:rgba(17,24,39,0.5);">
+    <div class="container text-center">
+      <h2 class="fade-in">Трансформация <span class="highlight">учеников</span></h2>
+      <p class="fade-in mb-2">Реальные истории людей, которые думали, что математика — это «не их»</p>
+      
+      <div class="fade-in" style="margin:2rem auto;max-width:700px;border-radius:16px;overflow:hidden;border:1px solid rgba(0,243,255,0.2);">
+        <img src="img4.png" alt="До и после занятий" style="width:100%;display:block;" onerror="this.style.display='none'">
+      </div>
+
+      <div class="before-after-grid fade-in">
+        <div class="ba-card glass before">
+          <div class="ba-emoji">😰</div>
+          <div class="ba-title">ДО ЗАНЯТИЙ</div>
+          <ul class="ba-list">
+            <li>❌ «Я гуманитарий, мне не дано»</li>
+            <li>❌ Оценка 2-3 за контрольные</li>
+            <li>❌ Паника при виде «x»</li>
+            <li>❌ Родители в отчаянии</li>
+            <li>❌ Страх перед ЕГЭ как перед казнью</li>
+          </ul>
+        </div>
+        <div class="ba-arrow">➡️</div>
+        <div class="ba-card glass after">
+          <div class="ba-emoji">😎</div>
+          <div class="ba-title">ПОСЛЕ ЗАНЯТИЙ</div>
+          <ul class="ba-list">
+            <li>✅ «Оказывается, я всё могу!»</li>
+            <li>✅ ЕГЭ 80+ баллов</li>
+            <li>✅ Решает задачи с параметром на раз</li>
+            <li>✅ Родители гордятся</li>
+            <li>✅ Бюджетное место в вузе мечты</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;" class="fade-in">
+        <h3 style="color:var(--text-secondary);font-size:1rem;font-weight:400;">Мои ученики поступили в:</h3>
+        <div class="universities-row">
+          <div class="uni-badge"><span class="uni-icon">🏛️</span> МГУ</div>
+          <div class="uni-badge"><span class="uni-icon">🔬</span> МФТИ</div>
+          <div class="uni-badge"><span class="uni-icon">⚙️</span> МГТУ им. Баумана</div>
+          <div class="uni-badge"><span class="uni-icon">💰</span> ВШЭ</div>
+          <div class="uni-badge"><span class="uni-icon">📊</span> РЭУ Плеханова</div>
+          <div class="uni-badge"><span class="uni-icon">🏗️</span> МИФИ</div>
+          <div class="uni-badge"><span class="uni-icon">🌍</span> СПбГУ</div>
+          <div class="uni-badge"><span class="uni-icon">🎓</span> + ещё 40+ вузов</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="fade-in">Отзывы <span class="highlight">учеников и родителей</span></h2>
+      <p class="fade-in mb-2">Реальные слова реальных людей. Без монтажировок. Без скриптов.</p>
+      
+      <!-- DIRECTOR TESTIMONIAL с фото dir.jpg -->
+      <div class="director-testimonial glass fade-in">
+        <div class="director-badge">🏆 ОФИЦИАЛЬНЫЙ ОТЗЫВ ДИРЕКТОРА</div>
+        <div class="director-quote">
+          Как директор школы, я видела много учителей, но таких, как наш учитель математики, действительно мало. Это не просто педагог, это настоящий "математический рок-звезда" нашей школы!
+          <br><br>
+          Сказать, что он "лучший", — это ничего не сказать. Он превращает сухие цифры и сложные формулы в увлекательные приключения. На его уроках даже те, кто раньше боялся алгебры, начинают понимать её красоту. Дети не просто учат формулы, они учатся думать!
+          <br><br>
+          Его подход — это смесь профессионализма, невероятного терпения и, что не менее важно, юмора. Он умеет объяснить самые сложные концепции так, что они становятся понятными даже пятикласснику. И результаты говорят сами за себя: наши ученики не только успешно сдают экзамены, но и побеждают на олимпиадах, а главное — они действительно любят математику!
+          <br><br>
+          Я горжусь тем, что в нашей школе работает такой талантливый и увлеченный своим делом учитель. Он настоящий вдохновитель для всех нас!
+        </div>
+        <div class="director-info">
+          <div class="director-avatar">
+            <img src="dir.jpg" alt="Трабицкая Т.А." onerror="this.style.display='none';this.parentElement.innerHTML='<div class=director-avatar-fallback>ТТ</div>'">
+          </div>
+          <div class="director-details">
+            <h4>Трабицкая Т.А.</h4>
+            <p>Директор школы №4 г. Слюдянки</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-slider fade-in">
+        <div class="testimonial-card glass">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            «Сын пришёл к Николаю Ивановичу с тройкой по математике. Через полгода сдал ЕГЭ на 84. 
+            Я до сих пор не верю. Муж говорит, что это магия. Я говорю — это Татарников.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ЕС</div>
+            <div>
+              <div class="testimonial-name">Елена С.</div>
+              <div class="testimonial-role">Мама ученика, 11 класс</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card glass">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            «Я думал, что я безнадёжный гуманитарий. Оказалось, что мне просто никто не объяснял нормально. 
+            Теперь решаю задачи с параметром и кайфую. Звучит странно, но это правда.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">АК</div>
+            <div>
+              <div class="testimonial-name">Алексей К.</div>
+              <div class="testimonial-role">Ученик, 10 класс, поступил в ВШЭ</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card glass">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            «Николай Иванович — это не репетитор, это анти-стресс-система. 
+            Дочь перестала бояться математики. А потом перестала бояться ЕГЭ. А потом вообще перестала бояться. Теперь она бесстрашна.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ОМ</div>
+            <div>
+              <div class="testimonial-name">Ольга М.</div>
+              <div class="testimonial-role">Мама ученицы, ЕГЭ 92 балла</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card glass">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            «Готовился к олимпиаде 3 месяца. Николай Иванович объяснил то, что в школе не могли объяснить за 2 года. 
+            Вышел в финал регионального этапа. Не первое место, но я в шоке от себя.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ДВ</div>
+            <div>
+              <div class="testimonial-name">Дмитрий В.</div>
+              <div class="testimonial-role">Ученик, олимпиадник</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card glass">
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">
+            «Мне 34 года, я решил вернуться к учёбе и поступить на программиста. 
+            Забыл всю математику со школы. Николай Иванович за 4 месяца вернул меня в форму. Сейчас учусь в магистратуре.»
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ИП</div>
+            <div>
+              <div class="testimonial-name">Игорь П.</div>
+              <div class="testimonial-role">Взрослый ученик, 34 года</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOR WHOM ===== -->
+  <section class="section" style="background:rgba(17,24,39,0.5);">
+    <div class="container text-center">
+      <h2 class="fade-in">Кому <span class="highlight">подойдёт</span>, а кому — нет</h2>
+      <p class="fade-in mb-2">Честно и без розовых очков. Как в аптеке.</p>
+      
+      <div class="whom-grid fade-in">
+        <div class="whom-card yes glass">
+          <div class="whom-title">✅ Вам ко мне, если:</div>
+          <ul class="whom-list">
+            <li>✅ Ученик «гуманитарий» и хочет это изменить</li>
+            <li>✅ Нужен результат на ЕГЭ/ОГЭ — и скоро</li>
+            <li>✅ Пробелы такие, что страшно даже открывать учебник</li>
+            <li>✅ Ребёнок боится математики как огня</li>
+            <li>✅ Готовы работать (а не ждать чуда)</li>
+            <li>✅ Хотите, чтобы ребёнок думал, а не зубрил</li>
+            <li>✅ Вы родитель, который устал от «он не способен»</li>
+          </ul>
+        </div>
+        <div class="whom-card no glass">
+          <div class="whom-title">❌ Вам НЕ ко мне, если:</div>
+          <ul class="whom-list">
+            <li>❌ Хотите «сделать уроки» вместо ребёнка</li>
+            <li>❌ Ищете репетитора за 300₽/час (я не тот)</li>
+            <li>❌ Думаете, что «заплатил — и готово» без усилий ученика</li>
+            <li>❌ Нужен «просто сдать на тройку»</li>
+            <li>❌ Считаете, что математика — это скучно и бесполезно</li>
+            <li>❌ Не готовы к тому, что ребёнок станет самостоятельнее</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CALCULATOR ===== -->
+  <section id="calculator" class="section">
+    <div class="container text-center">
+      <h2 class="fade-in">🔮 Калькулятор математического потенциала</h2>
+      <p class="fade-in mb-4">
+        Выберите ваш текущий уровень — и система покажет, какие горизонты вам доступны
+      </p>
+      
+      <div class="calculator-card glass fade-in">
+        <div class="slider-container">
+          <div class="slider-labels">
+            <span>🔴 С трудом считаю дроби</span>
+            <span>🟢 Уверенно решаю задачи с параметром</span>
+          </div>
+          <input type="range" id="levelSlider" min="0" max="100" value="25">
+        </div>
+        
+        <div class="result-display">
+          <div class="result-profession" id="resultLevel">Уверенный школьник</div>
+          <div class="result-result" id="resultResult">Потенциал: ЕГЭ 65-75 баллов</div>
+          <p class="result-desc" id="resultDesc">
+            С текущим уровнем вы можете успешно сдать базовую математику. 
+            После курса «Профильный уровень» — ваш результат вырастет до профильного ЕГЭ и выше.
+          </p>
+        </div>
+        
+        <a href="https://vk.com/id211211321" target="_blank" class="btn" style="margin-top:1.5rem;width:100%;justify-content:center;">
+          🎯 Начать путь к результату
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== METHODOLOGY ===== -->
+  <section id="method" class="section" style="background:rgba(17,24,39,0.5);">
+    <div class="container text-center">
+      <h2 class="fade-in">Методика: <span class="highlight">от понимания к мастерству</span></h2>
+      <p class="fade-in mb-2">
+        Никакой зубрёжки. Только глубокое понимание, которое остаётся навсегда
+      </p>
+      <p class="fade-in" style="font-style:italic;color:var(--neon-purple);font-size:0.9rem;">
+        (И да, я понимаю, что «зубрёжка» — это когда учишь формулы, не понимая, откуда они взялись. У нас такого не бывает.)
+      </p>
+      
+      <div class="method-grid">
+        <div class="method-card glass fade-in">
+          <span class="method-step">01</span>
+          <h3 class="method-title">🔍 Диагностика пробелов</h3>
+          <p>
+            Выявляю корневые причины непонимания — даже у тех, кто считает себя «гуманитарием». 
+            Нахожу, где «сломалась» логика, и чиню фундамент.
+          </p>
+          <p class="method-humor">💡 Как в медицине: не лечим симптомы — лечим причину. Только без уколов.</p>
+        </div>
+        
+        <div class="method-card glass fade-in">
+          <span class="method-step">02</span>
+          <h3 class="method-title">⚙️ Построение понимания</h3>
+          <p>
+            Объясняю суть через образы, аналогии и живые примеры. 
+            Ученик не запоминает — он <strong>видит</strong>, почему формула работает именно так.
+          </p>
+          <p class="method-humor">💡 Если интеграл можно объяснить через пиццу — я объясню через пиццу.</p>
+        </div>
+        
+        <div class="method-card glass fade-in">
+          <span class="method-step">03</span>
+          <h3 class="method-title">🚀 Выход на уровень эксперта</h3>
+          <p>
+            Отработка сложных задач, параметров, олимпиадных кейсов. 
+            Ученик не просто сдаёт экзамен — он решает то, что другим кажется невозможным.
+          </p>
+          <p class="method-humor">💡 После этого ЕГЭ покажется детским садом. В хорошем смысле.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TELEMETRY ===== -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="fade-in">📡 Результаты <span class="highlight">учеников</span></h2>
+      <p class="fade-in mb-2">Цифры, которые говорят сами за себя</p>
+      <p class="fade-in" style="font-size:0.85rem;color:var(--text-secondary);font-style:italic;">
+        (Подсчитано честно. Без накрутки. Калькулятор не врет.)
+      </p>
+      
+      <div class="telemetry-grid">
+        <div class="telemetry-item glass fade-in">
+          <span class="telemetry-number" data-target="142">0</span>
+          <span class="telemetry-label">Сдано ЕГЭ на 80+ баллов</span>
+        </div>
+        <div class="telemetry-item glass fade-in">
+          <span class="telemetry-number" data-target="98">0</span>
+          <span class="telemetry-label">% поступили в целевые вузы</span>
+        </div>
+        <div class="telemetry-item glass fade-in">
+          <span class="telemetry-number" data-target="9500">0</span>
+          <span class="telemetry-label">Часов персональных занятий</span>
+        </div>
+        <div class="telemetry-item glass fade-in">
+          <span class="telemetry-number" data-target="347">0</span>
+          <span class="telemetry-label">Учеников с «нуля» до результата</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN + PRICING ===== -->
+  <section id="pricing" class="section" style="background:rgba(17,24,39,0.5);">
+    <div class="container">
+      <h2 class="text-center fade-in">Форматы <span class="highlight">занятий</span></h2>
+      <p class="text-center fade-in mb-2">
+        Прозрачная система: <span class="highlight">1 000 ₽ за академический час</span>. Оплата по факту.
+      </p>
+
+      <div class="countdown-banner glass fade-in">
+        <div class="countdown-title">⏰ Набор на новый учебный сезон ограничен</div>
+        <div class="countdown-timer" id="countdown">
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-days">00</span>
+            <span class="countdown-label">дней</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-hours">00</span>
+            <span class="countdown-label">часов</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-minutes">00</span>
+            <span class="countdown-label">минут</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-number" id="cd-seconds">00</span>
+            <span class="countdown-label">секунд</span>
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-size:0.9rem;color:var(--text-secondary);">
+          Осталось <span class="highlight" style="color:var(--neon-pink);">3 места</span> на профильный уровень. Первое занятие — бесплатно.
+        </p>
+      </div>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card glass fade-in">
+          <h3 class="pricing-name">Базовый курс</h3>
+          <div class="pricing-price">8 000 ₽ <span>/ месяц</span></div>
+          <span class="pricing-hourly">≈ 8 часов • 1 000 ₽/час</span>
+          <ul class="pricing-features">
+            <li>2 занятия в неделю онлайн</li>
+            <li>Разбор школьной программы</li>
+            <li>Домашние задания с проверкой</li>
+            <li>Поддержка в чате VK в будни</li>
+            <li>Отчёт о прогрессе раз в месяц</li>
+          </ul>
+          <a href="https://vk.com/id211211321" target="_blank" class="btn btn-outline">Записаться в VK</a>
+        </div>
+        
+        <div class="pricing-card glass featured fade-in">
+          <h3 class="pricing-name">Профильный уровень</h3>
+          <div class="pricing-price">16 000 ₽ <span>/ месяц</span></div>
+          <span class="pricing-hourly">≈ 16 часов • 1 000 ₽/час</span>
+          <ul class="pricing-features">
+            <li>4 занятия в неделю (онлайн/оффлайн)</li>
+            <li>Подготовка к ЕГЭ/ОГЭ на 80+ баллов</li>
+            <li>Задачи с параметром, эконом-задачи</li>
+            <li>Приоритетная связь через VK</li>
+            <li>Авторские материалы и разборы</li>
+            <li>Пробные экзамены с аналитикой</li>
+          </ul>
+          <a href="https://vk.com/id211211321" target="_blank" class="btn">Выбрать в VK</a>
+        </div>
+        
+        <div class="pricing-card glass fade-in">
+          <h3 class="pricing-name">Индивидуальное наставничество</h3>
+          <div class="pricing-price">24 000 ₽ <span>/ месяц</span></div>
+          <span class="pricing-hourly">≈ 24 часа • 1 000 ₽/час</span>
+          <ul class="pricing-features">
+            <li>Гибкий график по договорённости</li>
+            <li>Персональная стратегия под цели</li>
+            <li>Подготовка к олимпиадам</li>
+            <li>Консультации по выбору вуза</li>
+            <li>Прямая связь с преподавателем</li>
+            <li>Гарантия результата по договору</li>
+          </ul>
+          <a href="https://vk.com/id211211321" target="_blank" class="btn btn-outline">Обсудить в VK</a>
+        </div>
+      </div>
+
+      <div class="guarantee-box glass fade-in">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-title">Гарантия результата</div>
+        <p style="color:var(--text-primary);max-width:500px;margin:0 auto;">
+          Если после месяца занятий ученик не видит прогресса — 
+          <strong style="color:var(--accent-success);">следующий месяц бесплатно</strong>. 
+          Без вопросов, без условий. Потому что я уверен в своей методике.
+        </p>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.5rem;font-style:italic;">
+          (За 12 лет ни разу не потребовалось. Но приятно знать, что такая опция есть.)
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="section">
+    <div class="container text-center">
+      <h2 class="fade-in">Частые <span class="highlight">вопросы</span></h2>
+      <p class="fade-in mb-2">Те, что спрашивают чаще всего. С честными ответами.</p>
+      
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>«У моего ребёнка нет способностей к математике»</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Это самое частое заблуждение. «Способности» — это миф. Есть только правильный подход и достаточная практика. 
+            Если ребёнок может научиться кататься на велосипеде — он может понять математику. Я работаю даже с теми, кто считает себя «безнадёжным гуманитарием». И результаты говорят сами за себя.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Сколько нужно заниматься, чтобы сдать ЕГЭ на 80+?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Зависит от стартового уровня. С «нуля» — от 8 месяцев. С базовым пониманием — от 4 месяцев. 
+            При этом важно: заниматься регулярно и делать домашние задания. Математика — это как спорт, разминка каждый день обязательна.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Можно ли заниматься онлайн?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Да, и это работает отлично. У меня есть опыт онлайн-занятий с учениками из разных городов и даже стран. 
+            Качество объяснения не зависит от формата — только от преподавателя. Онлайн даже удобнее: не нужно никуда ехать.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>А если ребёнку 7-8 класс, а не 11?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Тем лучше! Чем раньше начать — тем увереннее будет база. Многие приходят в 9-10 классе и жалуют: «Надо было раньше». 
+            Не повторяйте их ошибку. Фундамент, заложенный в 7-8 классе, сэкономит нервы (и деньги) в 11-м.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Почему 1 000₽/час? Это дорого/дешево?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Это честно. Вы платите за результат, а не за «посиделки». Средний репетитор берёт 800-1500₽ и даёт шаблонное объяснение. 
+            Я даю систему понимания, которая работает годами. Плюс гарантия: если нет прогресса — следующий месяц бесплатно. 
+            Попробуйте найти такое у других.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Как записаться на бесплатное диагностическое занятие?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Просто напишите мне в VK: <a href="https://vk.com/id211211321" target="_blank" style="color:var(--neon-blue);">vk.com/id211211321</a>. 
+            Опишите ситуацию (класс, текущие оценки, цели), и мы договоримся о времени. Первое занятие — бесплатно, без обязательств.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            Н.И. <span>Татарников</span>
+            <span class="school-badge">ШКОЛА №4</span>
+          </a>
+          <p style="color:var(--text-secondary);margin:1rem 0;font-size:0.95rem;">
+            Учитель математики. Архитектор мышления. 
+            Превращаю «не понимаю» в «понимаю и могу».
+            <br><span style="font-size:0.8rem;color:var(--neon-purple);">🏆 Лучший учитель по версии школы №4</span>
+          </p>
+          <div class="footer-cta">
+            <a href="https://vk.com/id211211321" target="_blank" class="btn btn-sm">
+              💬 Написать в VK
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-links">
+          <h4 style="margin-bottom:1rem;color:var(--neon-blue);font-family:'Orbitron',sans-serif;font-size:0.9rem;">Навигация</h4>
+          <a href="#about">Об учителе</a>
+          <a href="#results">Результаты</a>
+          <a href="#calculator">Калькулятор потенциала</a>
+          <a href="#method">Методика</a>
+          <a href="#pricing">Тарифы</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        
+        <div class="footer-links">
+          <h4 style="margin-bottom:1rem;color:var(--neon-blue);font-family:'Orbitron',sans-serif;font-size:0.9rem;">Связь</h4>
+          <a href="https://vk.com/id211211321" target="_blank">→ Написать лично в VK</a>
+          <a href="https://vk.com/id211211321" target="_blank">→ Записаться на диагностику</a>
+          <a href="https://vk.com/id211211321" target="_blank">→ Задать вопрос</a>
+          <button class="hack-btn" id="hackBtn">⌨️ Взломать систему</button>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        © 2026 Татарников Николай Иванович. Все права защищены. 
+        <br>Математика — это не предмет. Это способ мыслить.
+        <br><span style="font-size:0.8rem;color:var(--neon-purple);">P.S. Да, мы всё ещё лучший учитель по версии школы №4. И нет, мы не планируем сдавать позиции.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== CONSOLE MODAL ===== -->
+  <div class="modal-overlay" id="consoleModal">
+    <div class="console-modal" style="position:relative;">
+      <div class="console-header">
+        <div class="console-dot red"></div>
+        <div class="console-dot yellow"></div>
+        <div class="console-dot green"></div>
+        <span class="console-title">root@math:~# SECRET_TERMINAL</span>
+      </div>
+      <button class="close-console" id="closeConsole" style="position:absolute;top:0.5rem;right:1rem;">&times;</button>
+      <div class="console-body" id="consoleBody">
+        <div class="console-line">
+          <span class="console-prompt">user@system:~$</span>
+          <span>Доступ к секретному тарифу защищён.</span>
+        </div>
+        <div class="console-line">
+          <span class="console-prompt">user@system:~$</span>
+          <span>Реши уравнение, чтобы получить доступ:</span>
+        </div>
+        <div class="console-line">
+          <span class="console-prompt">user@system:~$</span>
+          <span style="color:var(--neon-blue);font-weight:bold;">2^x = 1024</span>
+        </div>
+        <div class="console-line">
+          <span class="console-prompt">user@system:~$</span>
+          <span>Введи x: </span>
+          <input type="text" class="console-input" id="consoleInput" maxlength="3">
+        </div>
+        <div id="consoleResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      fadeElements.forEach(el => observer.observe(el));
+      
+      const counters = document.querySelectorAll('.telemetry-number');
+      const animateCounter = (el, target, duration = 2000) => {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const update = () => {
+          start += increment;
+          if (start < target) {
+            el.textContent = Math.floor(start).toLocaleString('ru-RU');
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target.toLocaleString('ru-RU') + (target >= 100 ? '+' : '');
+          }
+        };
+        update();
+      };
+      
+      const telemetrySection = document.querySelector('.telemetry-grid');
+      let countersStarted = false;
+      const telemetryObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !countersStarted) {
+          countersStarted = true;
+          counters.forEach(counter => animateCounter(counter, parseInt(counter.dataset.target)));
+          animateCounter(document.getElementById('stat1'), 347);
+          animateCounter(document.getElementById('stat2'), 94);
+          animateCounter(document.getElementById('stat3'), 12);
+        }
+      });
+      telemetryObserver.observe(telemetrySection);
+      
+      const slider = document.getElementById('levelSlider');
+      const resultLevel = document.getElementById('resultLevel');
+      const resultResult = document.getElementById('resultResult');
+      const resultDesc = document.getElementById('resultDesc');
+      
+      const calculatorData = [
+        { min: 0, max: 20, level: '🌱 Начинающий', result: 'Потенциал: ЕГЭ 40-55 баллов', desc: 'Вы только начинаете путь. С курсом «Базовый» за 3-4 месяца закроете пробелы и будете уверенно решать задачи части 1. Не переживайте — все когда-то начинали.' },
+        { min: 21, max: 40, level: '📚 Уверенный школьник', result: 'Потенциал: ЕГЭ 65-75 баллов', desc: 'Хорошая база! С «Профильным уровнем» научитесь решать задачи с параметром и выйдете на баллы для поступления в сильные вузы.' },
+        { min: 41, max: 60, level: '🔥 Продвинутый', result: 'Потенциал: ЕГЭ 76-88 баллов', desc: 'Вы уже видите логику задач. Индивидуальная работа поможет отточить сложные темы и претендовать на бюджет в топ-вузах.' },
+        { min: 61, max: 80, level: '⚡ Эксперт', result: 'Потенциал: ЕГЭ 89-98 баллов', desc: 'Вы на пороге выдающегося результата. Наставничество поможет довести мастерство до совершенства.' },
+        { min: 81, max: 100, level: '🏆 Олимпиадный уровень', result: 'Потенциал: 95-100 баллов + олимпиады', desc: 'Вы мыслите как математик. Осталось отточить технику — и вы станете одним из лучших.' }
+      ];
+      
+      const updateCalculator = (value) => {
+        const data = calculatorData.find(item => value >= item.min && value <= item.max);
+        if (data) {
+          resultLevel.textContent = data.level;
+          resultResult.textContent = data.result;
+          resultDesc.textContent = data.desc;
+        }
+      };
+      
+      slider.addEventListener('input', (e) => updateCalculator(parseInt(e.target.value)));
+      updateCalculator(parseInt(slider.value));
+      
+      const targetDate = new Date('2026-09-01T00:00:00');
+      
+      const updateCountdown = () => {
+        const now = new Date();
+        const diff = targetDate - now;
+        
+        if (diff <= 0) {
+          document.getElementById('cd-days').textContent = '00';
+          document.getElementById('cd-hours').textContent = '00';
+          document.getElementById('cd-minutes').textContent = '00';
+          document.getElementById('cd-seconds').textContent = '00';
+          return;
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+      };
+      
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      
+      const modal = document.getElementById('consoleModal');
+      const hackBtn = document.getElementById('hackBtn');
+      const closeConsole = document.getElementById('closeConsole');
+      const consoleInput = document.getElementById('consoleInput');
+      const consoleResult = document.getElementById('consoleResult');
+      
+      hackBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        setTimeout(() => consoleInput.focus(), 300);
+      });
+      
+      closeConsole.addEventListener('click', () => {
+        modal.classList.remove('active');
+        resetConsole();
+      });
+      
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          resetConsole();
+        }
+      });
+      
+      consoleInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const answer = consoleInput.value.trim();
+          if (answer === '10') {
+            consoleResult.innerHTML = `
+              <div class="console-line console-success">✓ Доступ разрешён.</div>
+              <div class="console-line">Ваш промокод:</div>
+              <div class="promo-code">MATH2026</div>
+              <div class="console-line">Скидка 25% на первый месяц. Действует 48 часов.</div>
+              <div class="console-line" style="margin-top:1rem;">
+                <a href="https://vk.com/id211211321" target="_blank" class="btn btn-sm">Активировать в VK →</a>
+              </div>
+            `;
+            consoleInput.disabled = true;
+            createConfetti();
+          } else {
+            consoleResult.innerHTML = `<div class="console-line" style="color:#ff5f56;">✗ Ошибка. Подсказка: 2¹⁰ = 1024.</div>`;
+            consoleInput.value = '';
+            consoleInput.focus();
+          }
+        }
+      });
+      
+      const resetConsole = () => {
+        consoleResult.innerHTML = '';
+        consoleInput.value = '';
+        consoleInput.disabled = false;
+      };
+      
+      const createConfetti = () => {
+        const colors = ['#00f3ff', '#bc13fe', '#ff00aa', '#22d3ee', '#fbbf24', '#27ca40'];
+        for (let i = 0; i < 150; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.animationDelay = Math.random() * 2 + 's';
+          confetti.style.width = Math.random() * 8 + 4 + 'px';
+          confetti.style.height = confetti.style.width;
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }
+      };
+      
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+      
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+          header.style.background = 'rgba(10, 14, 23, 0.98)';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4)';
+        } else {
+          header.style.background = 'rgba(10, 14, 23, 0.95)';
+          header.style.boxShadow = 'none';
+        }
+      });
+      
+    });
+    
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const wasActive = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      
+      if (!wasActive) item.classList.add('active');
+    }
+  </script>
+</body>
+</html>
