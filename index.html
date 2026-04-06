@@ -434,13 +434,13 @@
       gap: 0.5rem;
     }
 
-    /* ===== CALCULATOR (ОБНОВЛЁННЫЙ) ===== */
+    /* ===== CALCULATOR (FIXED) ===== */
     .calculator-card {
       max-width: 800px;
       margin: 0 auto;
       padding: 2.5rem;
     }
-    .slider-container { margin: 2rem 0; position: relative; }
+    .slider-container { margin: 2rem 0; }
     
     input[type="range"] {
       width: 100%;
@@ -450,8 +450,6 @@
       outline: none;
       -webkit-appearance: none;
       appearance: none;
-      position: relative;
-      z-index: 2;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -465,33 +463,29 @@
     }
     input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 20px var(--neon-blue); }
     
-    /* Маркеры на слайдере */
+    /* ===== МАРКЕРЫ (исправленные) ===== */
     .slider-markers {
       position: relative;
       width: 100%;
-      height: 30px;
-      margin-top: -8px;
-      pointer-events: none;
+      margin-top: 12px;
     }
     .slider-marker {
       position: absolute;
-      top: 50%;
+      top: 0;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      pointer-events: auto;
       cursor: pointer;
       transition: var(--transition);
     }
-    .slider-marker:hover { transform: translateX(-50%) scale(1.1); }
+    .slider-marker:hover { transform: translateX(-50%) scale(1.15); }
     .marker-dot {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       border: 2px solid var(--text-secondary);
       background: var(--bg-primary);
-      margin-bottom: 6px;
       transition: var(--transition);
     }
     .marker-dot.active {
@@ -500,18 +494,34 @@
       box-shadow: 0 0 8px var(--neon-blue);
     }
     .marker-label {
-      font-size: 0.65rem;
+      margin-top: 6px;
+      font-size: 0.6rem;
       color: var(--text-secondary);
       white-space: nowrap;
       text-align: center;
-      max-width: 120px;
       transition: var(--transition);
+      line-height: 1.2;
     }
-    .marker-dot.active ~ .marker-label {
+    .marker-label.active-label {
       color: var(--neon-blue);
       font-weight: 600;
     }
     
+    /* Маркеры-цвета */
+    .marker-color-0 .marker-dot { border-color: #ff5f56; }
+    .marker-color-0.active .marker-dot { background: #ff5f56; border-color: #ff5f56; box-shadow: 0 0 8px #ff5f56; }
+    .marker-color-1 .marker-dot { border-color: #fbbf24; }
+    .marker-color-1.active .marker-dot { background: #fbbf24; border-color: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+    .marker-color-2 .marker-dot { border-color: #ff6b35; }
+    .marker-color-2.active .marker-dot { background: #ff6b35; border-color: #ff6b35; box-shadow: 0 0 8px #ff6b35; }
+    .marker-color-3 .marker-dot { border-color: var(--neon-blue); }
+    .marker-color-3.active .marker-dot { background: var(--neon-blue); border-color: var(--neon-blue); box-shadow: 0 0 8px var(--neon-blue); }
+    .marker-color-4 .marker-dot { border-color: #27ca40; }
+    .marker-color-4.active .marker-dot { background: #27ca40; border-color: #27ca40; box-shadow: 0 0 8px #27ca40; }
+    .marker-color-5 .marker-dot { border-color: var(--neon-purple); }
+    .marker-color-5.active .marker-dot { background: var(--neon-purple); border-color: var(--neon-purple); box-shadow: 0 0 8px var(--neon-purple); }
+    
+    /* ===== РЕЗУЛЬТАТ ===== */
     .result-display {
       background: var(--bg-secondary);
       border-radius: var(--border-radius);
@@ -1118,7 +1128,6 @@
       .school4-banner { flex-direction: column; text-align: center; }
       .director-testimonial { padding: 2rem 1.5rem; }
       .director-quote { font-size: 1rem; }
-      /* Маркеры калькулятора на мобильных */
       .marker-label { font-size: 0.55rem; max-width: 80px; }
     }
     @media (max-width: 600px) {
@@ -1186,15 +1195,15 @@
         </div>
         <div class="hero-stats">
           <div class="stat-item">
-            <span class="stat-number" id="stat1">0</span>
+            <span class="stat-number" id="stat1">56</span>
             <span class="stat-label">Учеников в топе</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" id="stat2">0</span>
+            <span class="stat-number" id="stat2">89</span>
             <span class="stat-label">Средний балл ЕГЭ</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" id="stat3">0</span>
+            <span class="stat-number" id="stat3">8</span>
             <span class="stat-label">Лет опыта</span>
           </div>
         </div>
@@ -1243,7 +1252,7 @@
             <span class="badge">✓ С нуля до 80+ на ЕГЭ</span>
             <span class="badge">✓ Олимпиадная подготовка</span>
             <span class="badge badge-purple">🏆 Лучший учитель школы №4</span>
-            <span class="badge">✓ 12 лет практики</span>
+            <span class="badge">✓ 8 лет практики</span>
             <span class="badge">✓ Гарантия результата</span>
             <span class="badge">✓ Первое занятие — бесплатно</span>
           </div>
@@ -1459,7 +1468,7 @@
     </div>
   </section>
 
-  <!-- ===== CALCULATOR (ОБНОВЛЁННЫЙ С МАРКЕРАМИ) ===== -->
+  <!-- ===== CALCULATOR (FIXED) ===== -->
   <section id="calculator" class="section">
     <div class="container text-center">
       <h2 class="fade-in">🔮 Калькулятор математического потенциала</h2>
@@ -1473,29 +1482,29 @@
           
           <!-- Маркеры на слайдере -->
           <div class="slider-markers">
-            <div class="slider-marker" style="left: 0%;" data-value="0">
+            <div class="slider-marker marker-color-0" style="left: 0%;" data-value="0">
               <div class="marker-dot active"></div>
-              <span class="marker-label">🔴 С трудом считаю дроби</span>
+              <span class="marker-label active-label">🔴 Дроби</span>
             </div>
-            <div class="slider-marker" style="left: 20%;" data-value="20">
+            <div class="slider-marker marker-color-1" style="left: 20%;" data-value="20">
               <div class="marker-dot"></div>
-              <span class="marker-label">🟡 Едва сдал контрольную</span>
+              <span class="marker-label">🟡 Контрольная</span>
             </div>
-            <div class="slider-marker" style="left: 40%;" data-value="40">
+            <div class="slider-marker marker-color-2" style="left: 40%;" data-value="40">
               <div class="marker-dot"></div>
-              <span class="marker-label">🟠 База школьной программы</span>
+              <span class="marker-label">🟠 База</span>
             </div>
-            <div class="slider-marker" style="left: 60%;" data-value="60">
+            <div class="slider-marker marker-color-3" style="left: 60%;" data-value="60">
               <div class="marker-dot"></div>
-              <span class="marker-label">🔵 Уверенный уровень</span>
+              <span class="marker-label">🔵 Уверенный</span>
             </div>
-            <div class="slider-marker" style="left: 80%;" data-value="80">
+            <div class="slider-marker marker-color-4" style="left: 80%;" data-value="80">
               <div class="marker-dot"></div>
-              <span class="marker-label">🟢 Решаю с параметром</span>
+              <span class="marker-label">🟢 Параметр</span>
             </div>
-            <div class="slider-marker" style="left: 100%;" data-value="100">
+            <div class="slider-marker marker-color-5" style="left: 100%;" data-value="100">
               <div class="marker-dot"></div>
-              <span class="marker-label">💎 Олимпиадный уровень</span>
+              <span class="marker-label">💎 Олимпиада</span>
             </div>
           </div>
         </div>
@@ -1678,7 +1687,7 @@
           Без вопросов, без условий. Потому что я уверен в своей методике.
         </p>
         <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:0.5rem;font-style:italic;">
-          (За 12 лет ни разу не потребовалось. Но приятно знать, что такая опция есть.)
+          (За 8 лет ни разу не потребовалось. Но приятно знать, что такая опция есть.)
         </p>
       </div>
     </div>
@@ -1892,13 +1901,13 @@
       });
       telemetryObserver.observe(telemetrySection);
       
-      // ===== CALCULATOR С МАРКЕРАМИ =====
+      // ===== CALCULATOR =====
       const slider = document.getElementById('levelSlider');
       const resultLevel = document.getElementById('resultLevel');
       const resultResult = document.getElementById('resultResult');
       const resultDesc = document.getElementById('resultDesc');
       const markers = document.querySelectorAll('.slider-marker');
-      const markerDots = document.querySelectorAll('.marker-dot');
+      const markerLabels = document.querySelectorAll('.marker-label');
       
       const calculatorData = [
         { min: 0, max: 20, level: '🌱 Начинающий', result: 'Потенциал: ЕГЭ 40-55 баллов', desc: 'Вы только начинаете путь. С курсом «Базовый» за 3-4 месяца закроете пробелы и будете уверенно решать задачи части 1. Не переживайте — все когда-то начинали.' },
@@ -1917,19 +1926,25 @@
         }
         
         // Обновление маркеров
-        markerDots.forEach(dot => dot.classList.remove('active'));
+        markerLabels.forEach(label => label.classList.remove('active-label'));
+        markers.forEach(marker => {
+          const dot = marker.querySelector('.marker-dot');
+          if (dot) dot.classList.remove('active');
+        });
+        
         markers.forEach(marker => {
           const markerValue = parseInt(marker.dataset.value);
           if (value >= markerValue - 5) {
             const dot = marker.querySelector('.marker-dot');
             if (dot) dot.classList.add('active');
+            const label = marker.querySelector('.marker-label');
+            if (label) label.classList.add('active-label');
           }
         });
       };
       
       slider.addEventListener('input', (e) => updateCalculator(parseInt(e.target.value)));
       
-      // Клик по маркерам
       markers.forEach(marker => {
         marker.addEventListener('click', () => {
           const value = parseInt(marker.dataset.value);
