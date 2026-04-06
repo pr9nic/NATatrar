@@ -33,7 +33,14 @@
     }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     .fade-out { opacity: 0; pointer-events: none; }
-
+    .testimonials-slider {
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .testimonial-card {
+      scroll-snap-align: start;
+    }
     /* ===== CSS VARIABLES ===== */
     :root {
       --bg-primary: #0a0e17;
@@ -2075,6 +2082,94 @@
       const wasActive = item.classList.contains('active');
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
       if (!wasActive) item.classList.add('active');
+    }
+	    // ===== DRAG-TO-SCROLL ДЛЯ ОТЗЫВОВ =====
+    // ===== DRAG-TO-SCROLL ДЛЯ ОТЗЫВОВ (ПЛАВНЫЙ) =====
+    const slider = document.querySelector('.testimonials-slider');
+    if (slider) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let animationFrameId;
+
+      // Добавляем плавность через CSS
+      slider.style.scrollBehavior = 'auto'; // Отключаем smooth для drag
+      slider.style.cursor = 'grab';
+      slider.style.userSelect = 'none';
+
+      const smoothScroll = (targetScroll) => {
+        const start = slider.scrollLeft;
+        const change = targetScroll - start;
+        const duration = 300; // мс
+        let startTime = null;
+
+        const animate = (currentTime) => {
+          if (!startTime) startTime = currentTime;
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Easing function для плавности
+          const easeInOut = progress < 0.5 
+            ? 2 * progress * progress 
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+          
+          slider.scrollLeft = start + change * easeInOut;
+          
+          if (progress < 1) {
+            animationFrameId = requestAnimationFrame(animate);
+          }
+        };
+        
+        requestAnimationFrame(animate);
+      };
+
+      slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.style.cursor = 'grabbing';
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        cancelAnimationFrame(animationFrameId);
+        slider.style.scrollBehavior = 'auto';
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.style.cursor = 'grab';
+      });
+
+      slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.style.cursor = 'grab';
+      });
+
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5; // Уменьшил скорость для плавности
+        slider.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch события
+      slider.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        cancelAnimationFrame(animationFrameId);
+        slider.style.scrollBehavior = 'auto';
+      }, { passive: true });
+
+      slider.addEventListener('touchend', () => {
+        isDown = false;
+        slider.style.scrollBehavior = 'smooth';
+      });
+
+      slider.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        slider.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
     }
   </script>
 </body>
