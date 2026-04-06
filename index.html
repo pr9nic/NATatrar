@@ -1507,9 +1507,11 @@
               <span class="marker-label">💎 Олимпиада</span>
             </div>
           </div>
+		  
         </div>
-        
+        <div>&nbsp;</div>
         <div class="result-display">
+
           <div class="result-profession" id="resultLevel">🌱 Начинающий</div>
           <div class="result-result" id="resultResult">Потенциал: ЕГЭ 40-55 баллов</div>
           <p class="result-desc" id="resultDesc">
@@ -1894,9 +1896,9 @@
         if (entries[0].isIntersecting && !countersStarted) {
           countersStarted = true;
           counters.forEach(counter => animateCounter(counter, parseInt(counter.dataset.target)));
-          animateCounter(document.getElementById('stat1'), 347);
+          animateCounter(document.getElementById('stat1'), 89);
           animateCounter(document.getElementById('stat2'), 94);
-          animateCounter(document.getElementById('stat3'), 12);
+          animateCounter(document.getElementById('stat3'), 8);
         }
       });
       telemetryObserver.observe(telemetrySection);
