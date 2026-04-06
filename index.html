@@ -6,7 +6,6 @@
   <title>Н.И. Татарников | Архитектор математического мышления</title>
   <meta name="description" content="Репетитор по математике Н.И. Татарников. Подготовка к ЕГЭ, ОГЭ, олимпиадам. 1000₽/час. Лучший учитель школы №4." />
   
-  <!-- Ускорение загрузки шрифтов -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -435,20 +434,14 @@
       gap: 0.5rem;
     }
 
-    /* ===== CALCULATOR ===== */
+    /* ===== CALCULATOR (ОБНОВЛЁННЫЙ) ===== */
     .calculator-card {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 2.5rem;
     }
-    .slider-container { margin: 2rem 0; }
-    .slider-labels {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
+    .slider-container { margin: 2rem 0; position: relative; }
+    
     input[type="range"] {
       width: 100%;
       height: 8px;
@@ -456,6 +449,9 @@
       background: var(--bg-secondary);
       outline: none;
       -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+      z-index: 2;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -468,6 +464,54 @@
       transition: var(--transition);
     }
     input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 20px var(--neon-blue); }
+    
+    /* Маркеры на слайдере */
+    .slider-markers {
+      position: relative;
+      width: 100%;
+      height: 30px;
+      margin-top: -8px;
+      pointer-events: none;
+    }
+    .slider-marker {
+      position: absolute;
+      top: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .slider-marker:hover { transform: translateX(-50%) scale(1.1); }
+    .marker-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--text-secondary);
+      background: var(--bg-primary);
+      margin-bottom: 6px;
+      transition: var(--transition);
+    }
+    .marker-dot.active {
+      border-color: var(--neon-blue);
+      background: var(--neon-blue);
+      box-shadow: 0 0 8px var(--neon-blue);
+    }
+    .marker-label {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      text-align: center;
+      max-width: 120px;
+      transition: var(--transition);
+    }
+    .marker-dot.active ~ .marker-label {
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+    
     .result-display {
       background: var(--bg-secondary);
       border-radius: var(--border-radius);
@@ -1074,6 +1118,8 @@
       .school4-banner { flex-direction: column; text-align: center; }
       .director-testimonial { padding: 2rem 1.5rem; }
       .director-quote { font-size: 1rem; }
+      /* Маркеры калькулятора на мобильных */
+      .marker-label { font-size: 0.55rem; max-width: 80px; }
     }
     @media (max-width: 600px) {
       .section { padding: 4rem 0; }
@@ -1083,6 +1129,7 @@
       .countdown-timer { gap: 0.75rem; }
       .countdown-number { font-size: 1.8rem; }
       .photo-gallery { grid-template-columns: 1fr; }
+      .marker-label { font-size: 0.5rem; max-width: 60px; }
     }
   </style>
 </head>
@@ -1206,7 +1253,7 @@
         </div>
       </div>
 
-      <!-- Photo gallery - без подписей, object-fit: contain -->
+      <!-- Photo gallery -->
       <div class="photo-gallery fade-in">
         <div class="photo-gallery-item">
           <img src="kol1.jpg" alt="Н.И. Татарников" loading="lazy" onerror="this.src='img2.png';this.onerror=null;">
@@ -1412,7 +1459,7 @@
     </div>
   </section>
 
-  <!-- ===== CALCULATOR ===== -->
+  <!-- ===== CALCULATOR (ОБНОВЛЁННЫЙ С МАРКЕРАМИ) ===== -->
   <section id="calculator" class="section">
     <div class="container text-center">
       <h2 class="fade-in">🔮 Калькулятор математического потенциала</h2>
@@ -1422,19 +1469,42 @@
       
       <div class="calculator-card glass fade-in">
         <div class="slider-container">
-          <div class="slider-labels">
-            <span>🔴 С трудом считаю дроби</span>
-            <span>🟢 Уверенно решаю задачи с параметром</span>
+          <input type="range" id="levelSlider" min="0" max="100" value="25" step="1">
+          
+          <!-- Маркеры на слайдере -->
+          <div class="slider-markers">
+            <div class="slider-marker" style="left: 0%;" data-value="0">
+              <div class="marker-dot active"></div>
+              <span class="marker-label">🔴 С трудом считаю дроби</span>
+            </div>
+            <div class="slider-marker" style="left: 20%;" data-value="20">
+              <div class="marker-dot"></div>
+              <span class="marker-label">🟡 Едва сдал контрольную</span>
+            </div>
+            <div class="slider-marker" style="left: 40%;" data-value="40">
+              <div class="marker-dot"></div>
+              <span class="marker-label">🟠 База школьной программы</span>
+            </div>
+            <div class="slider-marker" style="left: 60%;" data-value="60">
+              <div class="marker-dot"></div>
+              <span class="marker-label">🔵 Уверенный уровень</span>
+            </div>
+            <div class="slider-marker" style="left: 80%;" data-value="80">
+              <div class="marker-dot"></div>
+              <span class="marker-label">🟢 Решаю с параметром</span>
+            </div>
+            <div class="slider-marker" style="left: 100%;" data-value="100">
+              <div class="marker-dot"></div>
+              <span class="marker-label">💎 Олимпиадный уровень</span>
+            </div>
           </div>
-          <input type="range" id="levelSlider" min="0" max="100" value="25">
         </div>
         
         <div class="result-display">
-          <div class="result-profession" id="resultLevel">Уверенный школьник</div>
-          <div class="result-result" id="resultResult">Потенциал: ЕГЭ 65-75 баллов</div>
+          <div class="result-profession" id="resultLevel">🌱 Начинающий</div>
+          <div class="result-result" id="resultResult">Потенциал: ЕГЭ 40-55 баллов</div>
           <p class="result-desc" id="resultDesc">
-            С текущим уровнем вы можете успешно сдать базовую математику. 
-            После курса «Профильный уровень» — ваш результат вырастет до профильного ЕГЭ и выше.
+            Вы только начинаете путь. С курсом «Базовый» за 3-4 месяца закроете пробелы и будете уверенно решать задачи части 1. Не переживайте — все когда-то начинали.
           </p>
         </div>
         
@@ -1822,11 +1892,13 @@
       });
       telemetryObserver.observe(telemetrySection);
       
-      // Calculator
+      // ===== CALCULATOR С МАРКЕРАМИ =====
       const slider = document.getElementById('levelSlider');
       const resultLevel = document.getElementById('resultLevel');
       const resultResult = document.getElementById('resultResult');
       const resultDesc = document.getElementById('resultDesc');
+      const markers = document.querySelectorAll('.slider-marker');
+      const markerDots = document.querySelectorAll('.marker-dot');
       
       const calculatorData = [
         { min: 0, max: 20, level: '🌱 Начинающий', result: 'Потенциал: ЕГЭ 40-55 баллов', desc: 'Вы только начинаете путь. С курсом «Базовый» за 3-4 месяца закроете пробелы и будете уверенно решать задачи части 1. Не переживайте — все когда-то начинали.' },
@@ -1843,9 +1915,29 @@
           resultResult.textContent = data.result;
           resultDesc.textContent = data.desc;
         }
+        
+        // Обновление маркеров
+        markerDots.forEach(dot => dot.classList.remove('active'));
+        markers.forEach(marker => {
+          const markerValue = parseInt(marker.dataset.value);
+          if (value >= markerValue - 5) {
+            const dot = marker.querySelector('.marker-dot');
+            if (dot) dot.classList.add('active');
+          }
+        });
       };
       
       slider.addEventListener('input', (e) => updateCalculator(parseInt(e.target.value)));
+      
+      // Клик по маркерам
+      markers.forEach(marker => {
+        marker.addEventListener('click', () => {
+          const value = parseInt(marker.dataset.value);
+          slider.value = value;
+          updateCalculator(value);
+        });
+      });
+      
       updateCalculator(parseInt(slider.value));
       
       // Countdown
