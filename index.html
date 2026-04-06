@@ -4,12 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Н.И. Татарников | Архитектор математического мышления</title>
+  <meta name="description" content="Репетитор по математике Н.И. Татарников. Подготовка к ЕГЭ, ОГЭ, олимпиадам. 1000₽/час. Лучший учитель школы №4." />
   
+  <!-- Ускорение загрузки шрифтов -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
   
   <style>
+    /* ===== LOADER ===== */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #0a0e17;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease;
+    }
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(0,243,255,0.3);
+      border-top: 3px solid #00f3ff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .fade-out { opacity: 0; pointer-events: none; }
+
+    /* ===== CSS VARIABLES ===== */
     :root {
       --bg-primary: #0a0e17;
       --bg-secondary: #111827;
@@ -306,12 +332,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      max-height: 600px; /* Ограничение по высоте */
+      max-height: 600px;
     }
     .photo-gallery-item img {
-    width: 100%;
+      width: 100%;
       height: 100%;
-      object-fit: contain; /* Фото целиком без обрезки */
+      object-fit: contain;
       transition: var(--transition);
       display: block;
     }
@@ -1057,11 +1083,13 @@
       .countdown-timer { gap: 0.75rem; }
       .countdown-number { font-size: 1.8rem; }
       .photo-gallery { grid-template-columns: 1fr; }
-	  .photo-gallery-item {max-height: 500px;}
     }
   </style>
 </head>
 <body>
+
+  <!-- Экран загрузки -->
+  <div id="loader"><div class="loader-spinner"></div></div>
 
   <!-- ===== FLOATING VK BUTTON ===== -->
   <a href="https://vk.com/id211211321" target="_blank" class="floating-vk" title="Написать в VK">
@@ -1089,7 +1117,7 @@
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero">
-    <img src="img1.png" alt="Math background" class="hero-bg" onerror="this.style.display='none'">
+    <img src="img1.png" alt="Math background" class="hero-bg" fetchpriority="high" loading="eager" onerror="this.style.display='none'">
     <div class="container">
       <div class="hero-content fade-in">
         <div style="display:inline-block;background:rgba(188,19,254,0.15);border:1px solid var(--neon-purple);border-radius:50px;padding:0.3rem 1rem;font-size:0.8rem;margin-bottom:1rem;color:var(--neon-purple);">
@@ -1111,15 +1139,15 @@
         </div>
         <div class="hero-stats">
           <div class="stat-item">
-            <span class="stat-number" id="stat1">34</span>
+            <span class="stat-number" id="stat1">0</span>
             <span class="stat-label">Учеников в топе</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" id="stat2">92</span>
+            <span class="stat-number" id="stat2">0</span>
             <span class="stat-label">Средний балл ЕГЭ</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number" id="stat3">6</span>
+            <span class="stat-number" id="stat3">0</span>
             <span class="stat-label">Лет опыта</span>
           </div>
         </div>
@@ -1147,7 +1175,7 @@
       <div class="about-grid">
         <div class="about-photo glass fade-in">
           <div class="photo-frame">
-            <img src="kol1.jpg" alt="Н.И. Татарников — учитель математики" onerror="this.src='img2.png';this.onerror=null;">
+            <img src="kol1.jpg" alt="Н.И. Татарников — учитель математики" width="500" height="600" loading="eager" fetchpriority="high" onerror="this.src='img2.png';this.onerror=null;">
           </div>
         </div>
         
@@ -1178,8 +1206,15 @@
         </div>
       </div>
 
-      <!-- Photo gallery - без подписей -->
-
+      <!-- Photo gallery - без подписей, object-fit: contain -->
+      <div class="photo-gallery fade-in">
+        <div class="photo-gallery-item">
+          <img src="kol1.jpg" alt="Н.И. Татарников" loading="lazy" onerror="this.src='img2.png';this.onerror=null;">
+        </div>
+        <div class="photo-gallery-item">
+          <img src="kol2.jpg" alt="Диплом победителя" loading="lazy" onerror="this.style.display='none'">
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1190,7 +1225,7 @@
       <p class="fade-in mb-2">Реальные истории людей, которые думали, что математика — это «не их»</p>
       
       <div class="fade-in" style="margin:2rem auto;max-width:700px;border-radius:16px;overflow:hidden;border:1px solid rgba(0,243,255,0.2);">
-        <img src="img4.png" alt="До и после занятий" style="width:100%;display:block;" onerror="this.style.display='none'">
+        <img src="img4.png" alt="До и после занятий" style="width:100%;display:block;" loading="lazy" onerror="this.style.display='none'">
       </div>
 
       <div class="before-after-grid fade-in">
@@ -1241,7 +1276,7 @@
       <h2 class="fade-in">Отзывы <span class="highlight">учеников и родителей</span></h2>
       <p class="fade-in mb-2">Реальные слова реальных людей. Без монтажировок. Без скриптов.</p>
       
-      <!-- DIRECTOR TESTIMONIAL с фото dir.jpg -->
+      <!-- DIRECTOR TESTIMONIAL -->
       <div class="director-testimonial glass fade-in">
         <div class="director-badge">🏆 ОФИЦИАЛЬНЫЙ ОТЗЫВ ДИРЕКТОРА</div>
         <div class="director-quote">
@@ -1255,7 +1290,7 @@
         </div>
         <div class="director-info">
           <div class="director-avatar">
-            <img src="dir.jpg" alt="Трабицкая Т.А." onerror="this.style.display='none';this.parentElement.innerHTML='<div class=director-avatar-fallback>ТТ</div>'">
+            <img src="dir.jpg" alt="Трабицкая Т.А." width="70" height="70" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=director-avatar-fallback>ТТ</div>'">
           </div>
           <div class="director-details">
             <h4>Трабицкая Т.А.</h4>
@@ -1741,6 +1776,14 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
+      // Скрыть лоадер
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('fade-out');
+        setTimeout(() => { loader.style.display = 'none'; }, 500);
+      }
+
+      // Scroll animations
       const fadeElements = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1749,6 +1792,7 @@
       }, { threshold: 0.1 });
       fadeElements.forEach(el => observer.observe(el));
       
+      // Counters
       const counters = document.querySelectorAll('.telemetry-number');
       const animateCounter = (el, target, duration = 2000) => {
         let start = 0;
@@ -1778,6 +1822,7 @@
       });
       telemetryObserver.observe(telemetrySection);
       
+      // Calculator
       const slider = document.getElementById('levelSlider');
       const resultLevel = document.getElementById('resultLevel');
       const resultResult = document.getElementById('resultResult');
@@ -1803,12 +1848,11 @@
       slider.addEventListener('input', (e) => updateCalculator(parseInt(e.target.value)));
       updateCalculator(parseInt(slider.value));
       
+      // Countdown
       const targetDate = new Date('2026-09-01T00:00:00');
-      
       const updateCountdown = () => {
         const now = new Date();
         const diff = targetDate - now;
-        
         if (diff <= 0) {
           document.getElementById('cd-days').textContent = '00';
           document.getElementById('cd-hours').textContent = '00';
@@ -1816,7 +1860,6 @@
           document.getElementById('cd-seconds').textContent = '00';
           return;
         }
-        
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -1827,10 +1870,10 @@
         document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
       };
-      
       updateCountdown();
       setInterval(updateCountdown, 1000);
       
+      // Console Modal
       const modal = document.getElementById('consoleModal');
       const hackBtn = document.getElementById('hackBtn');
       const closeConsole = document.getElementById('closeConsole');
@@ -1841,19 +1884,16 @@
         modal.classList.add('active');
         setTimeout(() => consoleInput.focus(), 300);
       });
-      
       closeConsole.addEventListener('click', () => {
         modal.classList.remove('active');
         resetConsole();
       });
-      
       modal.addEventListener('click', (e) => {
         if (e.target === modal) {
           modal.classList.remove('active');
           resetConsole();
         }
       });
-      
       consoleInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           const answer = consoleInput.value.trim();
@@ -1876,13 +1916,13 @@
           }
         }
       });
-      
       const resetConsole = () => {
         consoleResult.innerHTML = '';
         consoleInput.value = '';
         consoleInput.disabled = false;
       };
       
+      // Confetti
       const createConfetti = () => {
         const colors = ['#00f3ff', '#bc13fe', '#ff00aa', '#22d3ee', '#fbbf24', '#27ca40'];
         for (let i = 0; i < 150; i++) {
@@ -1898,6 +1938,7 @@
         }
       };
       
+      // Smooth scroll
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -1906,6 +1947,7 @@
         });
       });
       
+      // Header scroll effect
       window.addEventListener('scroll', () => {
         const header = document.querySelector('header');
         if (window.scrollY > 50) {
@@ -1916,15 +1958,13 @@
           header.style.boxShadow = 'none';
         }
       });
-      
     });
     
+    // FAQ Toggle
     function toggleFaq(btn) {
       const item = btn.parentElement;
       const wasActive = item.classList.contains('active');
-      
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-      
       if (!wasActive) item.classList.add('active');
     }
   </script>
